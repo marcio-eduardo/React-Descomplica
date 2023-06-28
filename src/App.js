@@ -1,7 +1,9 @@
+import React, { createContext, useState, useContext } from "react";
+
 import Voos from "./Voos";
-import React from "react";
 import { AssentosOnibus } from "./AssentosOnibus";
 import { ViaCep } from "./ViaCEP";
+import { Fonts } from "./Fonts";
 
 const Titulo = () => (
   <h1>
@@ -41,7 +43,6 @@ const Lista = () => {
     </ul>
   )
 }
-
 class MeuBotao extends React.Component {
   //const handleClick = (e) => {
   //  console.log('clicou', e)
@@ -63,28 +64,40 @@ class MeuBotao extends React.Component {
   }
 }
 
+export const ThemeContext = createContext({});
+export const useThemeContext = () => useContext(ThemeContext);
+const SettingsContext = createContext({});
+export const useSettingsContext = () => useContext(SettingsContext);
+
 function App() {
+  
+  const [font, setFont] = useState('Dubai');
   const labelBtn = 'Entre aqui';
 
   return (
-    <div className="App">
-      <MeuBotao label={'Bom dia!!!'} />
-      <Titulo />
-      <ViaCep />
-      <AssentosOnibus />
-      <Voos />
-      <Lista />
-      <Pessoa idade={14}/>
-      <Pessoa idade={15}/>
-      <Pessoa idade={50}/>
-      <Pessoa idade={21}/>
-      <Pessoa idade={16}/>
-      <article>
-        <h2>Subtítulo </h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. </p>
-      </article>
-      <Btn label={`${labelBtn} !!!`} idade={30} />
-    </div>
+    <SettingsContext.Provider value={{ cepUrlBase: 'https://viacep.com.br' }}>
+      <ThemeContext.Provider value={{ color: 'orange', font: font, setFont }}>
+        <div className="App">
+          <MeuBotao label={'Bom dia!!!'} />
+          <Titulo />
+          <Fonts />
+          <ViaCep />
+          <AssentosOnibus />
+          <Voos />
+          {/* <Lista />
+          <Pessoa idade={14}/>
+          <Pessoa idade={15}/>
+          <Pessoa idade={50}/>
+          <Pessoa idade={21}/>
+          <Pessoa idade={16}/>
+          <article>
+            <h2>Subtítulo </h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. </p>
+          </article> */}
+          <Btn label={`${labelBtn} !!!`} idade={30} />
+        </div>
+      </ThemeContext.Provider>
+    </SettingsContext.Provider>
   );
 }
 
