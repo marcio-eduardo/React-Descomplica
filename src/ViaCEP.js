@@ -2,7 +2,7 @@ import { useCep } from "./hooks/useCEP";
 
 export const ViaCep = () => {
 
-  const endereco = useCep('206115720');
+  const endereco = useCep('26115720');
   
   return (
     <table>
