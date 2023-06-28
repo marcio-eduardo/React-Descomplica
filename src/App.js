@@ -4,6 +4,7 @@ import Voos from "./Voos";
 import { AssentosOnibus } from "./AssentosOnibus";
 import { ViaCep } from "./ViaCEP";
 import { Fonts } from "./Fonts";
+import { Formulario } from "./Formulario";
 
 const Titulo = () => (
   <h1>
@@ -28,21 +29,21 @@ const ListItem = ({ label }) => {
     <li>{ label }</li>
   )
 }
-const Lista = () => {
-  const passos = [
-    'Configurar projeto',
-    'Embedar React',
-    'Criar components',
-    'Escrever testes'
-  ]; 
-  return (
-    <ul>
-      {passos.map((valor, index) => (
-        <ListItem key={`item-${index}`} label={valor} />
-      ))}      
-    </ul>
-  )
-}
+// const Lista = () => {
+//   const passos = [
+//     'Configurar projeto',
+//     'Embedar React',
+//     'Criar components',
+//     'Escrever testes'
+//   ]; 
+//   return (
+//     <ul>
+//       {passos.map((valor, index) => (
+//         <ListItem key={`item-${index}`} label={valor} />
+//       ))}      
+//     </ul>
+//   )
+// }
 class MeuBotao extends React.Component {
   //const handleClick = (e) => {
   //  console.log('clicou', e)
@@ -78,8 +79,9 @@ function App() {
     <SettingsContext.Provider value={{ cepUrlBase: 'https://viacep.com.br' }}>
       <ThemeContext.Provider value={{ color: 'orange', font: font, setFont }}>
         <div className="App">
-          <MeuBotao label={'Bom dia!!!'} />
           <Titulo />
+          <Formulario />
+          <MeuBotao label={'Bom dia!!!'} />
           <Fonts />
           <ViaCep />
           <AssentosOnibus />
